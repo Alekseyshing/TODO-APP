@@ -1,16 +1,15 @@
-/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
-import { Todo } from './modeles/todo.model';
-import { InjectModel } from '@nestjs/sequelize'
-import { CreateTodo } from './dto/create-todo.dto';
+import { InjectModel } from '@nestjs/sequelize';
 import { ChangeTodo } from './dto/change-todo.dto';
+import { CreateTodo } from './dto/create-todo.dto';
+import { Todo } from './models/todo.model';
 
 @Injectable()
 export class TodoService {
   constructor(
     @InjectModel(Todo)
     private todoModel: typeof Todo,
-  ) { }
+  ) {}
 
   async findAll(): Promise<Todo[]> {
     return this.todoModel.findAll();
@@ -20,7 +19,7 @@ export class TodoService {
     return this.todoModel.findOne({
       where: {
         id,
-      }
+      },
     });
   }
 
@@ -33,7 +32,10 @@ export class TodoService {
     return todo.save();
   }
 
-  update(id: string, changeTodo: ChangeTodo): Promise<[affectedCount: number, affectedRows: Todo[]]> {
+  update(
+    id: string,
+    changeTodo: ChangeTodo,
+  ): Promise<[affectedCount: number, affectedRows: Todo[]]> {
     return this.todoModel.update(
       { ...changeTodo },
       {
@@ -41,7 +43,7 @@ export class TodoService {
           id,
         },
         returning: true,
-      }
+      },
     );
   }
 
