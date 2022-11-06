@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 import { ITodoReducer } from '../../types/types'
 import { TodoItem } from '../TodoItem/TodoItem'
+import './styles.css'
+
 
 export const TodoList = () => {
   const state = useSelector((state: ITodoReducer) => state.todoReducer)
@@ -10,8 +12,8 @@ export const TodoList = () => {
       {state.todos?.map(todo => (
         <CSSTransition
           timeout={800}
-          classNames={'post'}
-          key={todo.id}
+          classNames={'todo'}
+          key={todo?.id}
         >
           <TodoItem todo={todo} />
         </CSSTransition>
