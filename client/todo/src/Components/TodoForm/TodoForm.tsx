@@ -12,13 +12,7 @@ export const TodoForm = () => {
       return
     };
 
-    const todoObject = {
-      title,
-      done: false
-    }
-
-    //@ts-ignore
-    dispatch(createTodo(todoObject));
+    dispatch(createTodo(title));
     setTitle('')
   }
 
