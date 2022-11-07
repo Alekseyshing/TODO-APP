@@ -1,9 +1,18 @@
+import { useDispatch } from 'react-redux'
+import { getTodos } from './redux/actions'
+import { useEffect } from 'react'
 import { Header } from './Components/Header/Header'
 import { TodoForm } from './Components/TodoForm/TodoForm'
-import './App.css'
 import { TodoList } from './Components/TodoList/TodoList'
+import './App.css'
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTodos())
+  }, []);
+
   return (
     <>
       <Header />
