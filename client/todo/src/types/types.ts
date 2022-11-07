@@ -5,6 +5,7 @@ export enum ITodoActionTypes {
   GET_TODOS_SUCCESS = 'GET_TODOS_SUCCESS',
   CHANGE_TODO = 'CHANGE_TODO',
   COMPLETE_TODO = 'COMPLETE_TODO',
+  COMPLETE_TODO_SUCCESS = 'COMPLETE_TODO_SUCCESS',
   DELETE_TODO = 'DELETE_TODO',
   DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS',
 }
@@ -38,4 +39,9 @@ export interface IGetAction {
   payload?: ITodoState
 }
 
-export type ITodoAction = ICreateAction | IDeleteAction | IGetAction
+export interface ICompleteAction<T> {
+  type: ITodoActionTypes.COMPLETE_TODO_SUCCESS | ITodoActionTypes.COMPLETE_TODO,
+  payload: T
+}
+
+export type ITodoAction = ICreateAction | IDeleteAction | IGetAction | ICompleteAction<ITodo | string>
